@@ -1,0 +1,322 @@
+ 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agenda Médica</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .fondo-blur {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://www.xtrafondos.com/thumbs/webp/1_12783.webp');
+      background-size: cover;
+      background-position: center;
+      filter: blur(15px);
+      z-index: -1;
+    }
+
+    .contenido {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      max-width: 750px;
+      margin: auto;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #007BFF;
+    }
+
+    form, .citas {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      border-left: 5px solid #007BFF;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      color: #007BFF;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .cita {
+      border-bottom: 1px solid #ddd;
+      padding: 1rem 0;
+    }
+
+    .cita:last-child {
+      border-bottom: none;
+    }
+
+    .acciones button {
+      margin-right: 10px;
+      margin-top: 0.5rem;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .acciones button.editar {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .acciones button.eliminar {
+      background-color: #dc3545;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="fondo-blur"></div>
+  <div class="contenido">
+    <h1>Agenda de Horas Médicas</h1>
+
+    <form id="formulario">
+      <label>Nombre:</label>
+      <input type="text" id="nombre" required>
+
+      <label>Correo:</label>
+      <input type="email" id="correo" required>
+
+      <label>Motivo:</label>
+      <input type="text" id="motivo" required>
+
+      <label>Doctor:</label>
+      <select id="doctor" required>
+        <option value="">-- Selecciona un doctor --</option>
+        <option value="Dr. Juan Rojas">Dr. Juan Rojas</option>
+        <option value="Dra. Ana Pérez">Dra. Ana Pérez</option>
+        <option value="Dr. Luis Gómez">Dr. Luis Gómez</option>
+        <option value="Dr. Juan Luis Guerra">Dr. Juan Luis Guerra</option>
+        <option value="Dr. Carlos Alberto">Dr. Carlos Alberto</option>
+        <option value="Dra. María José">Dra. María José</option>
+        <option value="Dra. Carla Ruiz">Dra. Carla Ruiz</option>
+        <option value="Dr. Wallace Valencia">Dr. Wallace Valencia</option>
+        <option value="Dr. Juan Carlos">Dr. Juan Carlos</option>
+        <option value="Dra. Ana María">Dra. Ana María</option>
+        <option value="Dra. María Elena">Dra. María Elena</option>
+        <option value="Dra. Ana Lucía">Dra. Ana Lucía</option>
+        <option value="Dr. Juan Pablo">Dr. Juan Pablo</option>
+        <option value="Dr. Luis Alberto">Dr. Luis Alberto</option>
+        <option value="Dr. Juan Francisco">Dr. Juan Francisco</option>
+        <option value="Dr. Luis Miguel">Dr. Luis Miguel</option>
+        <option value="Dr. Juan Luis">Dr. Juan Luis</option>
+        <option value="Dr. Luis Enrique">Dr. Luis Enrique</option>
+        <option value="Dra. Ana Isabel">Dra. Ana Isabel</option>
+        <option value="Dra. Ana Sofía">Dra. Ana Sofía</option>
+        <option value="Dra. Ana Valeria">Dra. Ana Valeria</option>
+        <option value="Dra. Ana Ximena">Dra. Ana Ximena</option>
+        <option value="Dra. Ana Xochitl">Dra. Ana Xochitl</option>
+      </select>
+
+      <label>Especialidad:</label>
+      <input type="text" id="especialidad" readonly>
+
+      <label>Fecha:</label>
+      <input type="date" id="fecha" required>
+
+      <label>Hora:</label>
+      <select id="hora" required></select>
+
+      <button type="submit">Agendar</button>
+    </form>
+
+    <div class="citas">
+      <h2>Citas Agendadas</h2>
+      <div id="lista-citas"></div>
+    </div>
+  </div>
+
+  <script>
+    const doctorEspecialidad = {
+      "Dr. Juan Rojas": "Cardiología",
+      "Dra. Ana Pérez": "Pediatría",
+      "Dr. Luis Gómez": "Traumatología",
+      "Dra. Carla Ruiz": "Dermatología",
+      "Dr. Juan Luis Guerra": "Oftalmología",
+      "Dr. Carlos Alberto": "Ortopedia",
+      "Dra. María José": "Ginecología",
+      "Dra. Ana María": "Psiquiatría",
+      "Dra. Ana Lucía": "Neurología",
+      "Dr. Juan Pablo": "Urología",
+      "Dr. Luis Alberto": "Gastroenterología",
+      "Dr. Juan Francisco": "Endocrinología",
+      "Dr. Luis Miguel": "Reumatología",
+      "Dr. Juan Luis": "Infectología",
+      "Dr. Luis Enrique": "Oncología",
+      "Dra. Ana Isabel": "Psicología",
+      "Dra. Ana Sofía": "Fisioterapia",
+      "Dra. Ana Valeria": "Nutrición",
+      "Dra. Ana Ximena": "Fonoaudiología",
+      "Dra. Ana Xochitl": "Terapia Ocupacional",
+      "Dr. Luis Alberto": "Genética Médica",
+      "Dr. Wallace Valencia": "Cirugía Vascular",
+      "Dra. María Elena": "Cirugía Plástica",
+      "Dr. Juan Carlos": "Pa la corneta"
+    };
+
+    const horasDisponibles = [
+      "09:00", "10:00", "11:00", "12:00",
+      "14:00", "15:00", "16:00", "17:00"
+    ];
+
+    const formulario = document.getElementById("formulario");
+    const horaSelect = document.getElementById("hora");
+    const fechaInput = document.getElementById("fecha");
+    const doctorSelect = document.getElementById("doctor");
+    const especialidadInput = document.getElementById("especialidad");
+
+    doctorSelect.addEventListener("change", () => {
+      const doctor = doctorSelect.value;
+      especialidadInput.value = doctorEspecialidad[doctor] || "";
+      cargarHoras();
+    });
+
+    fechaInput.addEventListener("change", cargarHoras);
+
+    function cargarHoras() {
+      const fecha = fechaInput.value;
+      const doctor = doctorSelect.value;
+      const citas = obtenerCitas();
+      const horasUsadas = citas
+        .filter(c => c.fecha === fecha && c.doctor === doctor)
+        .map(c => c.hora);
+
+      horaSelect.innerHTML = "";
+      horasDisponibles.forEach(hora => {
+        if (!horasUsadas.includes(hora)) {
+          const option = document.createElement("option");
+          option.value = hora;
+          option.textContent = hora;
+          horaSelect.appendChild(option);
+        }
+      });
+
+      if (horaSelect.options.length === 0) {
+        const option = document.createElement("option");
+        option.textContent = "Sin horas disponibles";
+        horaSelect.appendChild(option);
+      }
+    }
+
+    formulario.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const correo = document.getElementById("correo").value;
+      const motivo = document.getElementById("motivo").value;
+      const doctor = doctorSelect.value;
+      const especialidad = especialidadInput.value;
+      const fecha = fechaInput.value;
+      const hora = horaSelect.value;
+
+      if (hora === "Sin horas disponibles") {
+        alert("No hay horas disponibles para esta fecha.");
+        return;
+      }
+
+      const nuevaCita = {
+        id: Date.now(),
+        nombre, correo, motivo, doctor, especialidad, fecha, hora
+      };
+
+      const citas = obtenerCitas();
+      citas.push(nuevaCita);
+      localStorage.setItem("citas", JSON.stringify(citas));
+      formulario.reset();
+      especialidadInput.value = "";
+      mostrarCitas();
+    });
+
+    function obtenerCitas() {
+      return JSON.parse(localStorage.getItem("citas") || "[]");
+    }
+
+    function mostrarCitas() {
+      const contenedor = document.getElementById("lista-citas");
+      contenedor.innerHTML = "";
+      const citas = obtenerCitas();
+
+      if (citas.length === 0) {
+        contenedor.textContent = "No hay citas agendadas.";
+        return;
+      }
+
+      citas.forEach(cita => {
+        const div = document.createElement("div");
+        div.classList.add("cita");
+        div.innerHTML = `
+          <strong>${cita.nombre}</strong> (${cita.correo})<br>
+          Motivo: ${cita.motivo}<br>
+          Doctor: ${cita.doctor} (${cita.especialidad})<br>
+          Fecha: ${cita.fecha} - Hora: ${cita.hora}
+          <div class="acciones">
+            <button class="editar" onclick="editarCita(${cita.id})">Editar</button>
+            <button class="eliminar" onclick="eliminarCita(${cita.id})">Eliminar</button>
+          </div>
+        `;
+        contenedor.appendChild(div);
+      });
+    }
+
+    function eliminarCita(id) {
+      const citas = obtenerCitas().filter(c => c.id !== id);
+      localStorage.setItem("citas", JSON.stringify(citas));
+      mostrarCitas();
+    }
+
+    function editarCita(id) {
+      const citas = obtenerCitas();
+      const cita = citas.find(c => c.id === id);
+      if (!cita) return;
+
+      document.getElementById("nombre").value = cita.nombre;
+      document.getElementById("correo").value = cita.correo;
+      document.getElementById("motivo").value = cita.motivo;
+      doctorSelect.value = cita.doctor;
+      especialidadInput.value = cita.especialidad;
+      fechaInput.value = cita.fecha;
+
+      cargarHoras();
+      setTimeout(() => {
+        horaSelect.value = cita.hora;
+      }, 100);
+
+      eliminarCita(id);
+    }
+
+    mostrarCitas();
+  </script>
+</body>
+</html>

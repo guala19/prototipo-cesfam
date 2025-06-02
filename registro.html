@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro en la Clínica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://www.xtrafondos.com/thumbs/webp/1_13134.webp') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            margin: 0;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            z-index: -1;
+            pointer-events: none; /* Esto permite que los campos sean clicables */
+        }
+        .register-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+        .register-container h2 {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .register-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .register-btn:hover {
+            background: #218838;
+        }
+        .message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Registro en el CESFAM</h2>
+        <input type="text" id="fullname" placeholder="Nombre Completo">
+        <input type="text" id="dni" placeholder="Rut">
+        <input type="email" id="email" placeholder="Correo Electrónico">
+        <input type="password" id="password" placeholder="Contraseña">
+        <input type="password" id="confirm-password" placeholder="Confirmar Contraseña">
+        <button class="register-btn" onclick="register()">Registrarse</button>
+        <p id="message" class="message"></p>
+    </div>
+
+    <script>
+        function register() {
+            const fullname = document.getElementById('fullname').value.trim();
+            const dni = document.getElementById('dni').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const message = document.getElementById('message');
+
+            if (!fullname || !dni || !email || !password || !confirmPassword) {
+                message.innerText = "Todos los campos son obligatorios";
+                message.style.color = "red";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                message.innerText = "Las contraseñas no coinciden";
+                message.style.color = "red";
+                return;
+            }
+
+            alert("¡Registro exitoso!");
+            window.location.href = "Agenda.html"; // Cambia esta URL por la que desees
+        }
+    </script>
+</body>
+</html>

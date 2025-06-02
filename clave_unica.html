@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ClaveÚnica - Autenticación</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      margin: 0;
+      padding-top: 40px;
+    }
+
+    #formulario {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      margin-top: 80px; /* Para no solaparse con los logos */
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logos-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-ministerio {
+      position: absolute;
+      width: 10%;
+      height: 10px;
+      margin-top: -40px;
+      margin-right: 55%;
+      margin-left: 40%;
+    }
+    .logo-claveunica {
+        position: auto;
+        width: 150px;
+        height: 50px;
+        margin-top: 0%;
+        margin-right: 180%;
+        margin-left: 120%;
+    }
+    
+
+    p.subtitulo {
+      text-align: center;
+      color: #555;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 95%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    input::placeholder {
+      color: #bbb;
+    }
+
+    a.enlace {
+      display: block;
+      margin-bottom: 25px;
+      font-size: 15px;
+      text-decoration: none;
+      color: #3f88f8;
+      text-align: left;
+    }
+
+    a.enlace:hover {
+      text-decoration: underline;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      background-color: #a0c4ff;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #8bb7f9;
+    }
+
+    #mensaje {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .correcto {
+      color: green;
+    }
+
+    .incorrecto {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="formulario">
+    <!-- Contenedor de los logos dentro del recuadro -->
+    <div class="logos-container">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6BgReuVjvqHm6ak2iMIP2eyJOfR81sJRkaQ&s" alt="Gobierno de Chile" class="logo-ministerio">
+      <img src="data:image/png;base64,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" alt="ClaveÚnica" class="logo-claveunica">
+    </div>
+    
+    <h1>ClaveÚnica</h1>
+    <p class="subtitulo">Requiere Autenticación.</p>
+    <form id="loginForm">
+      <label for="rut">RUT:</label>
+      <input type="text" id="rut" name="rut" placeholder="Ej: 12345678-9" required>
+
+      <label for="clave">Clave:</label>
+      <input type="password" id="clave" name="clave" placeholder="Tu clave" required>
+
+      <input type="submit" value="Ingresar">
+      <a href = "Olvidastelacontrasena.html">¿Olvidaste la contraseña?</a>
+    </form>
+
+    <div id="mensaje"></div>
+  </div>
+
+  <script>
+    // Script para manejar el envío del formulario
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const rut = document.getElementById('rut').value;
+      const clave = document.getElementById('clave').value;
+      const mensajeDiv = document.getElementById('mensaje');
+
+      // Validación simple
+      if (rut === "21993791-1" && clave === "infarto123") {
+        mensajeDiv.textContent = "¡Bienvenido! Has ingresado correctamente.";
+        mensajeDiv.className = 'correcto';
+            window.location.href = "Agenda.html"
+      } else {
+        mensajeDiv.textContent = "El RUT o la clave son incorrectos. Intenta nuevamente.";
+        mensajeDiv.className = 'incorrecto';
+      }
+    });
+  </script>
+
+</body>
+</html> 
