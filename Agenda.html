@@ -115,29 +115,29 @@
       <label>Doctor:</label>
       <select id="doctor" required>
         <option value="">-- Selecciona un doctor --</option>
-        <option value="Dr. Juan Rojas">Dr. Juan Rojas</option>
-        <option value="Dra. Ana Pérez">Dra. Ana Pérez</option>
-        <option value="Dr. Luis Gómez">Dr. Luis Gómez</option>
-        <option value="Dr. Juan Luis Guerra">Dr. Juan Luis Guerra</option>
-        <option value="Dr. Carlos Alberto">Dr. Carlos Alberto</option>
-        <option value="Dra. María José">Dra. María José</option>
-        <option value="Dra. Carla Ruiz">Dra. Carla Ruiz</option>
-        <option value="Dr. Wallace Valencia">Dr. Wallace Valencia</option>
-        <option value="Dr. Juan Carlos">Dr. Juan Carlos</option>
-        <option value="Dra. Ana María">Dra. Ana María</option>
-        <option value="Dra. María Elena">Dra. María Elena</option>
-        <option value="Dra. Ana Lucía">Dra. Ana Lucía</option>
-        <option value="Dr. Juan Pablo">Dr. Juan Pablo</option>
-        <option value="Dr. Luis Alberto">Dr. Luis Alberto</option>
-        <option value="Dr. Juan Francisco">Dr. Juan Francisco</option>
-        <option value="Dr. Luis Miguel">Dr. Luis Miguel</option>
-        <option value="Dr. Juan Luis">Dr. Juan Luis</option>
-        <option value="Dr. Luis Enrique">Dr. Luis Enrique</option>
-        <option value="Dra. Ana Isabel">Dra. Ana Isabel</option>
-        <option value="Dra. Ana Sofía">Dra. Ana Sofía</option>
-        <option value="Dra. Ana Valeria">Dra. Ana Valeria</option>
-        <option value="Dra. Ana Ximena">Dra. Ana Ximena</option>
-        <option value="Dra. Ana Xochitl">Dra. Ana Xochitl</option>
+        <option value="Dr. Juan Rojas">Dr. Juan Rojas (Cardiologo)</option>
+        <option value="Dra. Ana Pérez">Dra. Ana Pérez (Pediatra)</option>
+        <option value="Dr. Luis Gómez">Dr. Luis Gómez (Traumatologo)</option>
+        <option value="Dr. Juan Luis Guerra">Dr. Juan Luis Guerra (Oftalmologo)</option>
+        <option value="Dr. Carlos Alberto">Dr. Carlos Alberto (Orpedico)</option>
+        <option value="Dra. María José">Dra. María José (Ginecologa)</option>
+        <option value="Dra. Carla Ruiz">Dra. Carla Ruiz (Dermatologa)</option>
+        <option value="Dr. Wallace Valencia">Dr. Wallace Valencia (Medico Vascular)</option>
+        <option value="Dr. Juan Carlos Bodoque">Dr. Juan Carlos Bodoque</option>
+        <option value="Dra. Ana María">Dra. Ana María (Psiquiatra)</option>
+        <option value="Dra. María Elena">Dra. María Elena (Medica Plastica)</option>
+        <option value="Dra. Ana Lucía">Dra. Ana Lucía (Neurologa)</option>
+        <option value="Dr. Juan Pablo">Dr. Juan Pablo (Urologo)</option>
+        <option value="Dr. Luis Alberto">Dr. Luis Alberto (Gastroenterologo)</option>
+        <option value="Dr. Juan Francisco">Dr. Juan Francisco (Endocrinologo)</option>
+        <option value="Dr. Luis Miguel">Dr. Luis Miguel (Reumatologo)</option>
+        <option value="Dr. Juan Luis">Dr. Juan Luis (Infectologo)</option>
+        <option value="Dr. Luis Enrique">Dr. Luis Enrique (Oncologo)</option>
+        <option value="Dra. Paz Tapia">Dra. Paz Tapia (Psicologa)</option>
+        <option value="Dra. Ana Sofía">Dra. Ana Sofía (Fisioterapeuta)</option>
+        <option value="Dra. Ana Valeria">Dra. Ana Valeria (Nutricionista)</option>
+        <option value="Dra. Ana Ximena">Dra. Ana Ximena (Fonoaudiologa)</option>
+        <option value="Dra. Ana Xochitl">Dra. Ana Xochitl (Terapueta Ocupacional)</option>
       </select>
 
       <label>Especialidad:</label>
@@ -175,7 +175,7 @@
       "Dr. Luis Miguel": "Reumatología",
       "Dr. Juan Luis": "Infectología",
       "Dr. Luis Enrique": "Oncología",
-      "Dra. Ana Isabel": "Psicología",
+      "Dra. Paz Tapia": "Psicología",
       "Dra. Ana Sofía": "Fisioterapia",
       "Dra. Ana Valeria": "Nutrición",
       "Dra. Ana Ximena": "Fonoaudiología",
@@ -183,11 +183,11 @@
       "Dr. Luis Alberto": "Genética Médica",
       "Dr. Wallace Valencia": "Cirugía Vascular",
       "Dra. María Elena": "Cirugía Plástica",
-      "Dr. Juan Carlos": "Pa la corneta"
+      "Dr. Juan Carlos Bodoque": "Pa la corneta"
     };
 
     const horasDisponibles = [
-      "09:00", "10:00", "11:00", "12:00",
+      "8:00", "09:00", "10:00", "11:00", "12:00",
       "14:00", "15:00", "16:00", "17:00"
     ];
 
@@ -280,7 +280,11 @@
           <strong>${cita.nombre}</strong> (${cita.correo})<br>
           Motivo: ${cita.motivo}<br>
           Doctor: ${cita.doctor} (${cita.especialidad})<br>
-          Fecha: ${cita.fecha} - Hora: ${cita.hora}
+          Fecha: ${cita.fecha} - Hora: ${cita.hora}<br>
+          Datos de contacto: cesfamrenca@ouklook.cl<br
+          <br>
+          Numero de contacto: +56 9 97373982 - +56 2 2189739<br>
+        
           <div class="acciones">
             <button class="editar" onclick="editarCita(${cita.id})">Editar</button>
             <button class="eliminar" onclick="eliminarCita(${cita.id})">Eliminar</button>

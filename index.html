@@ -95,7 +95,17 @@
             color: #007bff;
             font-size: 14px;
         }
-
+        
+        .logo-cesfam{
+            position: absolute;
+            left: 10%;
+            width: 10px;
+            height: auto;
+            margin-top: -27%;
+            margin-right: 20%;
+            margin-left: -0%;
+        }
+        
         .links a:hover {
             text-decoration: underline;
         }
@@ -122,6 +132,10 @@
 <body>
     <a href="2025.png" download class="esquina-superior-derecha">Descargar gráfico</a>
 
+    <div class="logo-cesfam"> 
+        <img src="https://sdmntprwestus2.oaiusercontent.com/files/00000000-1df8-61f8-9ce6-d35d93dd4024/raw?se=2025-06-06T19%3A30%3A03Z&sp=r&sv=2024-08-04&sr=b&scid=1d877503-1eea-5855-93d8-101c1e81f04a&skoid=864daabb-d06a-46b3-a747-d35075313a83&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-06T11%3A44%3A49Z&ske=2025-06-07T11%3A44%3A49Z&sks=b&skv=2024-08-04&sig=SW/Af9ZS3suqzW4X5JqEsOKD1wkCp3RWjfq55Idq6UA%3D" alt="Logo CESFAM  " class="logo-ministerio">
+
+    </div>
     <div class="login-container">
         <h2>Acceso a la Clínica</h2>
         <input type="text" id="username" placeholder="Usuario">
@@ -136,7 +150,7 @@
             <body>
         <p id="message" class="message"></p>
     </div>
-    <script>
+        <script>
         function login() {
             let username = document.getElementById('username').value;
             let password = document.getElementById('password').value;
