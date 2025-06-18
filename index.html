@@ -1,18 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso al CESFAM</title>
-    <style>  
+    <style>
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            font-family: Arial, sans-serif;
             background: url("data:image/jpeg;base64,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");
             background-size: cover;
             position: relative;
@@ -20,6 +21,8 @@
         }
 
         body::before {
+            content: "";
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -28,22 +31,34 @@
             backdrop-filter: blur(8px);
             z-index: -1;
         }
-        .esquina-inferior-izquierda {
-             position: absolute;
-             bottom: -150px;
-             left: -500px;
-             background-color: #007BFF;
-             color: rgb(255, 255, 255) !important;
-             padding: 10px 15px;
-             text-decoration: none;
-              border-radius: 5px;
-             font-family: sans-serif;
-             z-index: 1000;
-}
 
-        .esquina-inferior-izquierda:hover {
-                background-color: #007BFF;
-}
+        .esquina-superior-derecha {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: sans-serif;
+            z-index: 1000;
+        }
+
+        .esquina-superior-derecha:hover {
+            background-color: #0056b3;
+        }
+
+        .logo-cesfam {
+            position: absolute;
+            left: 10%;
+            width: 10px;
+            height: auto;
+            margin-top: -27%;
+            margin-right: 20%;
+            margin-left: -0%;
+        }
+
         .login-container {
             background: white;
             padding: 15px;
@@ -95,27 +110,17 @@
             color: #007bff;
             font-size: 14px;
         }
-        
-        .logo-cesfam{
-            position: absolute;
-            left: 10%;
-            width: 10px;
-            height: auto;
-            margin-top: -27%;
-            margin-right: 20%;
-            margin-left: -0%;
-        }
-        
+
         .links a:hover {
             text-decoration: underline;
         }
 
-        .esquina-superior-derecha {
-            position: fixed;
-            top: 10px;
-            right: 10px;
+        .esquina-inferior-izquierda {
+            position: absolute;
+            bottom: -150px;
+            left: -500px;
             background-color: #007BFF;
-            color: white;
+            color: rgb(255, 255, 255) !important;
             padding: 10px 15px;
             text-decoration: none;
             border-radius: 5px;
@@ -123,19 +128,18 @@
             z-index: 1000;
         }
 
-        .esquina-superior-derecha:hover {
-            background-color: #0056b3;
+        .esquina-inferior-izquierda:hover {
+            background-color: #007BFF;
         }
-        
     </style>
 </head>
 <body>
     <a href="2025.png" download class="esquina-superior-derecha">Descargar gráfico</a>
 
     <div class="logo-cesfam"> 
-        <img src="https://sdmntprwestus2.oaiusercontent.com/files/00000000-1df8-61f8-9ce6-d35d93dd4024/raw?se=2025-06-06T19%3A30%3A03Z&sp=r&sv=2024-08-04&sr=b&scid=1d877503-1eea-5855-93d8-101c1e81f04a&skoid=864daabb-d06a-46b3-a747-d35075313a83&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-06T11%3A44%3A49Z&ske=2025-06-07T11%3A44%3A49Z&sks=b&skv=2024-08-04&sig=SW/Af9ZS3suqzW4X5JqEsOKD1wkCp3RWjfq55Idq6UA%3D" alt="Logo CESFAM  " class="logo-ministerio">
-
+        <img src="https://sdmntprwestus2.oaiusercontent.com/files/00000000-1df8-61f8-9ce6-d35d93dd4024/raw?se=2025-06-06T19%3A30%3A03Z&sp=r&sv=2024-08-04&sr=b&scid=1d877503-1eea-5855-93d8-101c1e81f04a&skoid=864daabb-d06a-46b3-a747-d35075313a83&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-06T11%3A44%3A49Z&ske=2025-06-07T11%3A44%3A49Z&sks=b&skv=2024-08-04&sig=SW/Af9ZS3suqzW4X5JqEsOKD1wkCp3RWjfq55Idq6UA%3D" alt="Logo CESFAM" class="logo-ministerio">
     </div>
+
     <div class="login-container">
         <h2>Acceso a la Clínica</h2>
         <input type="text" id="username" placeholder="Usuario">
@@ -145,21 +149,19 @@
             <a href="clave_unica.html">Iniciar Sesión con Clave Única</a>
             <a href="registro.html">Registrarse</a>
             <a href="contacto.html" class="esquina-inferior-izquierda">Contáctanos</a>
-
-
-            <body>
+        </div>
         <p id="message" class="message"></p>
     </div>
-        <script>
+
+    <script>
         function login() {
             let username = document.getElementById('username').value;
             let password = document.getElementById('password').value;
-            
+
             if (username === "21993791-1" && password === "infarto123") {
                 document.getElementById('message').innerText = "Acceso concedido";
                 document.getElementById('message').style.color = "green";
-                (username === "21993791-1" && password === "infarto123") 
-                    window.location.href = "Agenda.html"
+                window.location.href = "Agenda.html";
             } else {
                 document.getElementById('message').innerText = "Usuario o contraseña incorrectos";
                 document.getElementById('message').style.color = "red";
